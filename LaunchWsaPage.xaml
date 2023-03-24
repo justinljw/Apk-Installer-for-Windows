@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ApkInstallerForWindows.LaunchWsaPage"
+             xmlns:viewmodel="clr-namespace:ApkInstallerForWindows.ViewModel"
+             
+             Title="Launch WSA">
+
+    <FlexLayout 
+        Margin="40, 0, 40, 0" 
+        Direction="Column"
+        JustifyContent="SpaceEvenly">
+        
+        <Label 
+            Text="{Binding LaunchStatus}"
+            IsVisible="{Binding CanClick}"
+            FontSize="21"
+            HeightRequest="200"
+            HorizontalOptions="Center" />
+        
+        <Label
+            Text="Launching WSA and connecting Adb..."
+            IsVisible="{Binding IsBusy}"
+            FontSize="21"
+            HorizontalOptions="Center" />
+
+        <Grid 
+            IsVisible="{Binding IsBusy}"
+            HorizontalOptions="Center"
+            ColumnDefinitions="Auto, 30, Auto"
+            Margin="40">
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                HeightRequest="100"
+                WidthRequest="100"
+                Color="Orange" />
+        </Grid>
+
+        <Button
+            Grid.Column="0"
+            x:Name="NextBtn"
+            Text="Next"
+            IsVisible="{Binding CanClick}"
+            Command="{Binding NextCommand}"
+            HorizontalOptions="End"
+            VerticalOptions="End"/>
+            
+    </FlexLayout>
+</ContentPage>

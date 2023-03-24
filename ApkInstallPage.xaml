@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ApkInstallerForWindows.ApkInstallPage"
+             xmlns:viewmodel="clr-namespace:ApkInstallerForWindows.ViewModel"
+             
+             Title="Apk Installer for Windows">
+
+    <FlexLayout 
+        Margin="40, 0, 40, 0" 
+        Direction="Column"
+        JustifyContent="SpaceEvenly">
+
+        <Image
+            Source="wsalogo.png"
+            HeightRequest="180"
+            HorizontalOptions="Center" />
+        
+        <Label
+            Text="{Binding ApkFileName, StringFormat='Ready to Install {0}'}"
+            FontSize="18"
+            HorizontalOptions="Center" />
+        
+        <Button
+            x:Name="NextBtn"
+            Text="Next"
+            Command="{Binding InstallCommand}"
+            HorizontalOptions="End"/>
+
+    </FlexLayout>
+</ContentPage>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ApkInstallerForWindows.MainPage"
+             xmlns:viewmodel="clr-namespace:ApkInstallerForWindows.ViewModel"
+             
+             Title="Apk Installer for Windows">
+
+    <FlexLayout 
+        Margin="40, 0, 40, 0" 
+        Direction="Column"
+        JustifyContent="SpaceEvenly">
+
+        <Image
+                Source="wsalogo.png"
+                HeightRequest="180"
+                HorizontalOptions="Center" />
+
+        <Grid 
+            ColumnDefinitions="Auto, 250, Auto"
+            HorizontalOptions="Start">
+            <Label
+                Grid.Column="0"
+                Text="Welcome to Apk Installer for Windows"
+                FontSize="18"
+                HorizontalOptions="Start"
+                VerticalOptions="Center" />
+            <ImageButton
+                Grid.Column="2"
+                x:Name="InfoBtn"
+                Source="settings.png"
+                CornerRadius="12"
+                HeightRequest="24" 
+                WidthRequest="24"
+                Command="{Binding OpenCommand}"
+                HorizontalOptions="End"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <Grid ColumnDefinitions="Auto, 30, Auto, 30, Auto">
+            <Button
+                Grid.Column="0"
+                x:Name="SelectBtn"
+                Text="Select"
+                Command="{Binding SelectCommand}"
+                HorizontalOptions="Center" />
+            <Button
+                Grid.Column="2"
+                x:Name="NextBtn"
+                Text="Next"
+                Command="{Binding NextCommand}"
+                IsEnabled="{Binding CanClick}"
+                HorizontalOptions="Center" />
+            <Label
+                Grid.Column="4"
+                Text="{Binding ApkFilePath}"
+                FontSize="10"
+                VerticalOptions="FillAndExpand" />
+        </Grid>
+
+        <Grid 
+            ColumnDefinitions="Auto, 15, Auto, Auto, Auto, 15, Auto"
+            HorizontalOptions="Start"
+            VerticalOptions="Center">
+            <Label 
+                Grid.Column="0"
+                Text="Install from AppCenter:"
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" />
+            <Entry
+                x:Name="AppEty"
+                Grid.Column="2"
+                WidthRequest="250"
+                Text="{Binding AppName}"
+                Placeholder="e.g., Survey123-dotnet_arm64_apk"
+                ClearButtonVisibility="WhileEditing"/>
+            <Entry
+                x:Name="ReleaseEty"
+                Grid.Column="4"
+                WidthRequest="100"
+                Text="{Binding ReleaseId}"
+                Placeholder="101"
+                ClearButtonVisibility="WhileEditing"/>
+            <Button
+                x:Name="InstallBtn"
+                Grid.Column="6"
+                Text="Install"
+                Command="{Binding InstallCommand}"
+                IsEnabled="{Binding CanInstall}"
+                HorizontalOptions="Center" />
+        </Grid>
+
+    </FlexLayout>
+
+</ContentPage>

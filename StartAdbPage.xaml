@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ApkInstallerForWindows.StartAdbPage"
+             xmlns:viewmodel="clr-namespace:ApkInstallerForWindows.ViewModel"
+             
+             Title="Installing Apk">
+
+    <FlexLayout 
+        Margin="40, 0, 40, 0" 
+        Direction="Column"
+        JustifyContent="SpaceEvenly">
+        
+        <ScrollView
+            IsVisible="{Binding CanClick}"
+            HeightRequest="200"
+            WidthRequest="600"
+            HorizontalOptions="Center">
+            <Editor
+                Text="{Binding InstallStatus}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                IsReadOnly="True"
+                AutoSize="TextChanges"/>
+        </ScrollView>
+
+        <Grid 
+            IsVisible="{Binding IsBusy}"
+            HorizontalOptions="Center"
+            ColumnDefinitions="Auto, 30, Auto"
+            Margin="40">
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                HeightRequest="100"
+                WidthRequest="100"
+                Color="Orange" />
+        </Grid>
+
+        <Button
+            Grid.Column="0"
+            x:Name="DoneBtn"
+            Text="Done"
+            IsVisible="{Binding CanClick}"
+            Command="{Binding DoneCommand}"
+            HorizontalOptions="End"
+            VerticalOptions="End"/>
+
+    </FlexLayout>
+</ContentPage>
