@@ -89,7 +89,7 @@ public partial class StartAdbViewModel : ObservableObject
         {
             IsBusy = false;
             CanClick = false;
-            await Application.Current.MainPage.DisplayAlert("Installation failed", $"{cmd_output}\n{cmd_error}\nERROR:{ex}", "OK");
+            InstallStatus = $"Installation failed!\n{cmd_output}\n{cmd_error}\nERROR:{ex}";
         }
     }
 }
