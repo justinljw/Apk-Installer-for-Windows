@@ -41,9 +41,6 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private string appcenterHint;
 
-    [ObservableProperty]
-    private bool hintVisible;
-
     [RelayCommand]
     async void Select()
     {

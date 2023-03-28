@@ -101,7 +101,6 @@
                 Text="* Hint"
                 FontSize="10"
                 TextColor="DimGray"
-                IsVisible="{Binding HintVisible}"
                 HorizontalOptions="End" 
                 VerticalOptions="Center" />
             <Frame 
@@ -110,11 +109,12 @@
                 WidthRequest="250"
                 HeightRequest="30"
                 Padding="0" 
-                IsVisible="{Binding HintVisible}"
                 BackgroundColor="Transparent"
                 BorderColor="Transparent">
                 <ScrollView 
-                    IsClippedToBounds="True">
+                    Orientation="Vertical"
+                    IsClippedToBounds="True"
+                    VerticalScrollBarVisibility="Always">
                     <Editor 
                         Text="{Binding AppcenterHint}"
                         FontSize="10"
