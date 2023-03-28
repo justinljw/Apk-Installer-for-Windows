@@ -13,7 +13,7 @@
 
         <Image
                 Source="wsalogo.png"
-                HeightRequest="180"
+                HeightRequest="160"
                 HorizontalOptions="Center" />
 
         <Grid 
@@ -37,29 +37,36 @@
                 VerticalOptions="Center" />
         </Grid>
 
-        <Grid ColumnDefinitions="Auto, 30, Auto, 30, Auto">
-            <Button
+        <Grid ColumnDefinitions="Auto, 15, Auto, 15, Auto, 15, Auto">
+            <Label 
                 Grid.Column="0"
+                Text="Install by selecting APK file:"
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" />
+            <Button
+                Grid.Column="2"
                 x:Name="SelectBtn"
                 Text="Select"
                 Command="{Binding SelectCommand}"
                 HorizontalOptions="Center" />
             <Button
-                Grid.Column="2"
+                Grid.Column="4"
                 x:Name="NextBtn"
                 Text="Next"
                 Command="{Binding NextCommand}"
                 IsEnabled="{Binding CanClick}"
                 HorizontalOptions="Center" />
             <Label
-                Grid.Column="4"
+                Grid.Column="6"
                 Text="{Binding ApkFilePath}"
                 FontSize="10"
+                WidthRequest="300"
                 VerticalOptions="FillAndExpand" />
         </Grid>
 
         <Grid 
             ColumnDefinitions="Auto, 15, Auto, Auto, Auto, 15, Auto"
+            RowDefinitions="Auto, 2, Auto"
             HorizontalOptions="Start"
             VerticalOptions="Center">
             <Label 
@@ -88,6 +95,38 @@
                 Command="{Binding InstallCommand}"
                 IsEnabled="{Binding CanInstall}"
                 HorizontalOptions="Center" />
+            <Label 
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="* Hint"
+                FontSize="10"
+                TextColor="DimGray"
+                IsVisible="{Binding HintVisible}"
+                HorizontalOptions="End" 
+                VerticalOptions="Center" />
+            <Frame 
+                Grid.Row="2"
+                Grid.Column="2"
+                WidthRequest="250"
+                HeightRequest="30"
+                Padding="0" 
+                IsVisible="{Binding HintVisible}"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent">
+                <ScrollView 
+                    IsClippedToBounds="True">
+                    <Editor 
+                        Text="{Binding AppcenterHint}"
+                        FontSize="10"
+                        TextColor="DimGray"
+                        BackgroundColor="Transparent"
+                        IsReadOnly="True" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start"
+                        WidthRequest="260" 
+                        HeightRequest="50" />
+                </ScrollView>
+            </Frame>
         </Grid>
 
     </FlexLayout>

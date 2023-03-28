@@ -14,7 +14,8 @@ public partial class SettingsViewModel : ObservableObject
         TokenStr = MainViewModel.userInfo.thisTokenStr;
         OwnerName = MainViewModel.userInfo.thisOwnerName;
         DownloadPath = MainViewModel.userInfo.thisDownloadPath;
-        showSave = false;
+        ShowSave = false;
+        AppVersion = AppInfo.Current.VersionString;
     }
 
     [ObservableProperty]
@@ -31,6 +32,9 @@ public partial class SettingsViewModel : ObservableObject
 
     [ObservableProperty]
     private bool showSave;
+
+    [ObservableProperty]
+    private string appVersion;
 
     [RelayCommand]
     async void Select()

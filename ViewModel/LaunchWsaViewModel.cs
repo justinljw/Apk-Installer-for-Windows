@@ -12,6 +12,7 @@ public partial class LaunchWsaViewModel : ObservableObject
         LaunchStatus = null;
         CanClick = false;
         IsBusy = true; 
+        ShowInfo = false;
     }
 
     [ObservableProperty]
@@ -19,6 +20,9 @@ public partial class LaunchWsaViewModel : ObservableObject
 
     [ObservableProperty]
     bool canClick;
+
+    [ObservableProperty]
+    bool showInfo;
 
     [ObservableProperty]
     String launchStatus;
@@ -68,15 +72,14 @@ public partial class LaunchWsaViewModel : ObservableObject
                 }
             }
             await IsAdbConnect();
-            IsBusy = false;  
-            CanClick = true;
+            IsBusy = false;
         }
         catch (Exception ex)
         {
-            LaunchStatus = "Timeout. Fail to Launch WSA. Please check if you can manually open WSA.";
             IsBusy = false;
             CanClick = false;
-            await Application.Current.MainPage.DisplayAlert("Installation failed", $"Cancelled. Unable to launch WSA. {ex.Message}", "OK");
+            ShowInfo = true;
+            LaunchStatus = $"Installation failed. Timeout, fail to Launch WSA. Please check if you can manually open WSA.\n{ex.Message}";
         }
     }
 
@@ -141,12 +144,13 @@ public partial class LaunchWsaViewModel : ObservableObject
                 }
             }
             LaunchStatus = "Successfully launched WSA and connected to Adb";
+            CanClick = true;
         }
         catch (Exception ex)
         {
-            LaunchStatus = "Unable to connect with Adb";
             CanClick = false;
-            await Application.Current.MainPage.DisplayAlert("Installation failed", $"{cmd_output}\n{cmd_error}\nERROR:{ex}", "OK");
+            ShowInfo = true;
+            LaunchStatus = $"Installation failed, unable to connect with Adb!\nCMD ERROR: \n{cmd_error}ERROR: {ex.Message}";
         }
     }
 

@@ -6,6 +6,7 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
+        Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         Routing.RegisterRoute(nameof(ApkInstallPage), typeof(ApkInstallPage));
         Routing.RegisterRoute(nameof(LaunchWsaPage), typeof(LaunchWsaPage));
         Routing.RegisterRoute(nameof(StartAdbPage), typeof(StartAdbPage));

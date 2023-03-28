@@ -11,6 +11,7 @@ public partial class StartAdbViewModel : ObservableObject
         InstallStatus = null;
         CanClick = false;
         IsBusy = true;
+        ShowInfo = false;
     }
 
     [ObservableProperty]
@@ -20,12 +21,21 @@ public partial class StartAdbViewModel : ObservableObject
     bool canClick;
 
     [ObservableProperty]
+    bool showInfo;
+
+    [ObservableProperty]
     String installStatus;
 
     [RelayCommand]
     void Done()
     {
         Application.Current?.CloseWindow(Application.Current.MainPage.Window);
+    }
+
+    [RelayCommand]
+    async Task Again()
+    {
+        await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
     }
 
     public Task startTask()
@@ -84,11 +94,13 @@ public partial class StartAdbViewModel : ObservableObject
             IsBusy = false;
             InstallStatus = cmd_output;
             CanClick = true;
+            ShowInfo = true;
         }
         catch (Exception ex)
         {
             IsBusy = false;
             CanClick = false;
+            ShowInfo = true;
             InstallStatus = $"Installation failed!\n{cmd_output}\n{cmd_error}\nERROR:{ex}";
         }
     }

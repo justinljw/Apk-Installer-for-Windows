@@ -14,6 +14,7 @@ public partial class MainViewModel : ObservableObject
         CanClick = false;
         AppName = "";
         ReleaseId = "latest";
+        AppcenterHint = "Survey123-dotnet_arm64_apk\nSurvey123Alpha_arm64.apk\nArcGISQuickCapture_arm64.apk\n\n\n";
     }
 
     [ObservableProperty]
@@ -23,7 +24,7 @@ public partial class MainViewModel : ObservableObject
     public static string jsonPath;
 
     [ObservableProperty]
-    bool canClick;
+    private bool canClick;
 
     [ObservableProperty]
     public static string appName;
@@ -36,6 +37,12 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty]
     public static bool canInstall;
+
+    [ObservableProperty]
+    private string appcenterHint;
+
+    [ObservableProperty]
+    private bool hintVisible;
 
     [RelayCommand]
     async void Select()

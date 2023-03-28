@@ -12,7 +12,7 @@
         JustifyContent="SpaceEvenly">
         
         <ScrollView
-            IsVisible="{Binding CanClick}"
+            IsVisible="{Binding ShowInfo}"
             HeightRequest="200"
             WidthRequest="600"
             HorizontalOptions="Center">
@@ -36,14 +36,23 @@
                 Color="Orange" />
         </Grid>
 
+        <Grid 
+            IsVisible="{Binding CanClick}"
+            HorizontalOptions="End"
+            ColumnDefinitions="Auto, 30, Auto">
         <Button
             Grid.Column="0"
+            x:Name="AgainBtn"
+            Text="Start Again"
+            Command="{Binding AgainCommand}"
+            VerticalOptions="Center" />
+        <Button
+            Grid.Column="2"
             x:Name="DoneBtn"
             Text="Done"
-            IsVisible="{Binding CanClick}"
             Command="{Binding DoneCommand}"
-            HorizontalOptions="End"
-            VerticalOptions="End"/>
+            VerticalOptions="Center" />
+        </Grid>
 
     </FlexLayout>
 </ContentPage>

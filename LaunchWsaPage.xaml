@@ -17,7 +17,20 @@
             FontSize="21"
             HeightRequest="200"
             HorizontalOptions="Center" />
-        
+
+        <ScrollView
+            IsVisible="{Binding ShowInfo}"
+            HeightRequest="200"
+            WidthRequest="600"
+            HorizontalOptions="Center">
+            <Editor
+                Text="{Binding LaunchStatus}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                IsReadOnly="True"
+                AutoSize="TextChanges"/>
+        </ScrollView>
+
         <Label
             Text="Launching WSA and connecting Adb..."
             IsVisible="{Binding IsBusy}"
