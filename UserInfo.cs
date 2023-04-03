@@ -6,4 +6,5 @@ public class Info
     public string thisTokenStr { get; set; }
     public string thisOwnerName { get; set; }
     public string thisDownloadPath { get; set; }
+    public bool thisAutoLaunch { get; set; }
 }

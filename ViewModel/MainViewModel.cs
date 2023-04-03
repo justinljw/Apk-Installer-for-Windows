@@ -112,7 +112,7 @@ public partial class MainViewModel : ObservableObject
         {
             if (!File.Exists(JsonPath))
             {
-                UserInfo = new Info() { thisWsaPort = "58526", thisTokenStr = "", thisOwnerName = "appstudio-h0at", thisDownloadPath = "default" };
+                UserInfo = new Info() { thisWsaPort = "58526", thisTokenStr = "", thisOwnerName = "appstudio-h0at", thisDownloadPath = "default", thisAutoLaunch = false };
                 writeJson(UserInfo, JsonPath);
             }
             using (StreamReader strRead = File.OpenText(JsonPath))

@@ -30,28 +30,39 @@
             ColumnDefinitions="Auto, 30, Auto"
             Margin="40">
             <ActivityIndicator
+                x:Name="InstallAppAid"
                 IsRunning="{Binding IsBusy}"
+                Color="Orange"
                 HeightRequest="100"
-                WidthRequest="100"
-                Color="Orange" />
+                WidthRequest="100" />
         </Grid>
 
         <Grid 
-            IsVisible="{Binding CanClick}"
             HorizontalOptions="End"
             ColumnDefinitions="Auto, 30, Auto">
-        <Button
-            Grid.Column="0"
-            x:Name="AgainBtn"
-            Text="Start Again"
-            Command="{Binding AgainCommand}"
-            VerticalOptions="Center" />
-        <Button
-            Grid.Column="2"
-            x:Name="DoneBtn"
-            Text="Done"
-            Command="{Binding DoneCommand}"
-            VerticalOptions="Center" />
+            <Button
+                Grid.Column="0"
+                x:Name="AgainBtn"
+                Text="Start Again"
+                Command="{Binding AgainCommand}"
+                IsVisible="{Binding ShowInfo}"
+                VerticalOptions="Center" />
+            <Button
+                Grid.Column="2"
+                x:Name="DoneBtn"
+                Text="Done"
+                Command="{Binding DoneCommand}"
+                IsVisible="{Binding CanClick}"
+                VerticalOptions="Center" />
+            <ActivityIndicator
+                Grid.Column="2"
+                x:Name="OpenAppAid"
+                IsRunning="{Binding IsStartAppLaunch}"
+                IsEnabled="{Binding IsStartAppLaunch}"
+                Color="white"
+                HeightRequest="20"
+                WidthRequest="20"
+                HorizontalOptions="Center"/>
         </Grid>
 
     </FlexLayout>

@@ -6,9 +6,10 @@
              
              Title="Settings">
 
-    <StackLayout  
-        Margin="40, 20, 40, 0" 
-        Spacing="20">
+    <FlexLayout 
+        Margin="40, 0, 40, 0" 
+        Direction="Column"
+        JustifyContent="SpaceEvenly">
 
         <Grid 
             ColumnDefinitions="Auto, 30, Auto"
@@ -95,6 +96,31 @@
                 HorizontalOptions="Start" />
         </Grid>
 
+        <Grid 
+            ColumnDefinitions="Auto, 30, Auto, 10, Auto"
+            HorizontalOptions="Start"
+            VerticalOptions="Center">
+            <Label 
+                Grid.Column="0"
+                Text="Auto Launch:"
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" />
+            <CheckBox
+                x:Name="AutoLaunchChb"
+                Grid.Column="2" 
+                Color="#ff4685"
+                IsChecked ="{Binding AutoLaunch}"
+                CheckedChanged="OnAutoLaunchChbCheckedChanged"
+                HeightRequest="50"
+                WidthRequest="50"/>
+            <Label 
+                Grid.Column="4"
+                Text="*Beta"
+                TextColor="Gray"
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" />
+        </Grid>
+
         <Grid
             ColumnDefinitions="Auto, 30, Auto"
             HorizontalOptions="Start"
@@ -118,5 +144,5 @@
             HorizontalOptions="End" 
             VerticalOptions="End" />
 
-    </StackLayout >
+    </FlexLayout >
 </ContentPage>

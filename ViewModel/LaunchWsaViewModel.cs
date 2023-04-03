@@ -132,6 +132,7 @@ public partial class LaunchWsaViewModel : ObservableObject
                 cmdProcess.BeginOutputReadLine();
                 cmdProcess.BeginErrorReadLine();
 
+                cmdProcess.StandardInput.WriteLine("adb kill-server");
                 cmdProcess.StandardInput.WriteLine("adb start-server");
                 cmdProcess.StandardInput.WriteLine($"adb connect localhost:{MainViewModel.userInfo.thisWsaPort}");
 
@@ -143,6 +144,7 @@ public partial class LaunchWsaViewModel : ObservableObject
                     throw new Exception();
                 }
             }
+            cmdProcess.Kill();
             LaunchStatus = "Successfully launched WSA and connected to Adb";
             CanClick = true;
         }

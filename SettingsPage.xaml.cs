@@ -31,4 +31,9 @@ public partial class SettingsPage : ContentPage
     {
         MainViewModel.userInfo.thisDownloadPath = DownloadEty.Text;
     }
+
+    void OnAutoLaunchChbCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        MainViewModel.userInfo.thisAutoLaunch = e.Value;
+    }
 }

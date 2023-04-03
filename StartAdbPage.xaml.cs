@@ -1,4 +1,5 @@
 using ApkInstallerForWindows.ViewModel;
+using System.Diagnostics;
 
 namespace ApkInstallerForWindows;
 

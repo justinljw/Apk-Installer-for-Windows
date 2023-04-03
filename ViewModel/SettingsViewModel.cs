@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Maui.Storage;
-using System.Diagnostics;
 using System.Text.Json;
+using Microsoft.Web.WebView2.Core;
 
 namespace ApkInstallerForWindows.ViewModel;
 
@@ -14,6 +14,7 @@ public partial class SettingsViewModel : ObservableObject
         TokenStr = MainViewModel.userInfo.thisTokenStr;
         OwnerName = MainViewModel.userInfo.thisOwnerName;
         DownloadPath = MainViewModel.userInfo.thisDownloadPath;
+        AutoLaunch = MainViewModel.userInfo.thisAutoLaunch;
         ShowSave = false;
         AppVersion = AppInfo.Current.VersionString;
     }
@@ -28,7 +29,10 @@ public partial class SettingsViewModel : ObservableObject
     public static string ownerName;
 
     [ObservableProperty]
-    public static string downloadPath; 
+    public static string downloadPath;
+
+    [ObservableProperty]
+    public static bool autoLaunch;
 
     [ObservableProperty]
     private bool showSave;
@@ -47,16 +51,6 @@ public partial class SettingsViewModel : ObservableObject
         try
         {
             var folderPath = await FolderPicker.PickAsync(default);
-
-
-            //Debug.WriteLine(":::::::step0");
-            //FolderPicker folderPicker = new FolderPicker();
-            //Debug.WriteLine(":::::::step1");
-            //folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
-            //folderPicker.FileTypeFilter.Add("*");
-            //Debug.WriteLine(":::::::step2");
-            //var folder = await folderPicker.PickSingleFolderAsync();
-            //Debug.WriteLine(":::::::step3");
             return folderPath == null ? throw new Exception() : folderPath.Folder.Path;
         }
         catch (Exception ex)
@@ -73,9 +67,11 @@ public partial class SettingsViewModel : ObservableObject
         MainViewModel.userInfo.thisTokenStr = TokenStr;
         MainViewModel.userInfo.thisOwnerName = OwnerName;
         MainViewModel.userInfo.thisDownloadPath = DownloadPath;
+        MainViewModel.userInfo.thisAutoLaunch = AutoLaunch;
 
         try
         {
+            startMoveAapt();
             using (StreamWriter strWrite = File.CreateText(MainViewModel.jsonPath))
             {
                 string strJson = JsonSerializer.Serialize(MainViewModel.userInfo);
@@ -88,6 +84,50 @@ public partial class SettingsViewModel : ObservableObject
             Application.Current.MainPage.DisplayAlert("Settings not saved!",
                 $"May be lack of settings.json file. Settings can not be saved. {ex.Message}",
                 "OK");
+        }
+    }
+
+    private Task startMoveAapt()
+    {
+        return Task.Factory.StartNew(() => moveAapt());
+    }
+
+    private async void moveAapt()
+    {
+        try
+        {
+            string sourceFile = "aapt.exe";
+            string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, sourceFile);
+            if (!File.Exists(targetFile))
+            {
+                using FileStream outputStream = File.OpenWrite(targetFile);
+                using Stream fs = await FileSystem.Current.OpenAppPackageFileAsync(sourceFile);
+                using BinaryWriter writer = new BinaryWriter(outputStream);
+                using (BinaryReader reader = new BinaryReader(fs))
+                {
+                    var bytesRead = 0;
+
+                    int bufferSize = 1024;
+                    var buffer = new byte[bufferSize];
+                    using (fs)
+                    {
+                        do
+                        {
+                            buffer = reader.ReadBytes(bufferSize);
+                            bytesRead = buffer.Count();
+                            writer.Write(buffer);
+                        }
+
+                        while (bytesRead > 0);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            AutoLaunch = false;
+            MainViewModel.userInfo.thisAutoLaunch = AutoLaunch;
+            await Application.Current.MainPage.DisplayAlert("May be lack of aapt.exe", $"Can't use auto launch mode. {ex.Message}", "OK");
         }
     }
 }
