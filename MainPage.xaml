@@ -17,11 +17,11 @@
                 HorizontalOptions="Center" />
 
         <Grid 
-            ColumnDefinitions="Auto, 250, Auto"
+            ColumnDefinitions="Auto, 200, Auto"
             HorizontalOptions="Start">
             <Label
                 Grid.Column="0"
-                Text="Welcome to Apk Installer for Windows"
+                Text="Choose below options to install APK to WSA"
                 FontSize="18"
                 HorizontalOptions="Start"
                 VerticalOptions="Center" />

@@ -1,0 +1,1 @@
+C:\Maui\My\prototype\ApkInstallerForWindows\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppPackages\ApkInstallerForWindows_1.0.34.0_Debug_Test\ApkInstallerForWindows_1.0.34.0_x64_Debug.msix

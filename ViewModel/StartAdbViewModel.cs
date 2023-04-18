@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace ApkInstallerForWindows.ViewModel;
@@ -81,8 +83,13 @@ public partial class StartAdbViewModel : ObservableObject
                 cmdStartInfo.CreateNoWindow = true;
                 cmdProcess.StartInfo = cmdStartInfo;
 
-                cmdProcess.OutputDataReceived += (s, e) => cmd_output += (e.Data != null && !e.Data.Contains(">")) ? (e.Data + "\n") : "";
-                cmdProcess.ErrorDataReceived += (s, e) => cmd_error += e.Data != null ? (e.Data + "\n") : "";
+                cmdProcess.OutputDataReceived += (s, e) => cmd_output += (
+                        e.Data != null &&
+                        (e.Data.Contains("C:") || e.Data.Contains("Microsoft Windows") || e.Data.Contains("Microsoft Corporation"))
+                        ) ? "" : e.Data + "\n";
+                cmdProcess.ErrorDataReceived += (s, e) => cmd_error += (
+                        e.Data != null &&
+                        e.Data.Contains("C:")) ? "" : e.Data + "\n";
 
                 cmdProcess.EnableRaisingEvents = true;
                 cmdProcess.Start();
@@ -103,16 +110,17 @@ public partial class StartAdbViewModel : ObservableObject
                 }
             }
             cmdProcess.Kill();
-            InstallStatus = $"Successfully installed!\n\n{cmd_output}";
+            string rcInfo = remove_cache();
+            InstallStatus = $"Successfully installed!\n\nCMD OUTPUT:{cmd_output}\n{rcInfo}";
             IsBusy = false;
             CanClick = true;
             ShowInfo = true;
-            
         }
         catch (Exception ex)
-        {
+        {            
             cmdProcess.Kill();
-            InstallStatus = $"Installation failed!\n\n{cmd_output}{cmd_error}\n{ex}";
+            string rcInfo = remove_cache();
+            InstallStatus = $"Installation failed!\n\nCMD OUTPUT:\n{cmd_output}\nCMD ERROR:\n{cmd_error}\nERROR:\n{ex.Message}\n{rcInfo}";
             IsBusy = false;
             CanClick = false;
             ShowInfo = true;
@@ -166,5 +174,22 @@ public partial class StartAdbViewModel : ObservableObject
             Regex.Replace(appLaunchCmdOut, @"\s+", "");
         }
         cmdProcess.Kill();
+    }
+
+    private string remove_cache()
+    {
+        try
+        {
+            if (installFilePath.Contains(FileSystem.Current.CacheDirectory))
+            {
+                File.Delete(installFilePath);
+                return $"Successfully removed downloaded cache file: {installFilePath}";
+            }
+            return "";
+        }
+        catch (IOException ex)
+        {
+            return $"Unable to remove downloaded cache file: {installFilePath}\n{ex}";
+        }
     }
 }

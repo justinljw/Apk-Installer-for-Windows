@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Maui.Storage;
 using System.Text.Json;
-using Microsoft.Web.WebView2.Core;
 
 namespace ApkInstallerForWindows.ViewModel;
 

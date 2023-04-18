@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HkPfD3NVQpudbEkU9lAgJopRhaOJ75YMTuCiNhmACxhYmEQw9KDuzJasA8iYS5aXQbxlhglPVmXl8i1pPEJ2jw==",
+  "dgSpecHash": "I01rjslDCyPVxxLF12WJILBkabHXIZbtQRYZWkeDhRmXEkjNZ58wGAqnmtqtf5vkjQg7wdkb6yQrLCZoy5Yb7w==",
   "success": true,
   "projectFilePath": "C:\\Maui\\My\\prototype\\ApkInstallerForWindows\\ApkInstallerForWindows.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\liu11440\\.nuget\\packages\\adk-build-tools\\33.0.1\\adk-build-tools.33.0.1.nupkg.sha512",
     "C:\\Users\\liu11440\\.nuget\\packages\\appcenter.downloadapp.getappinfo\\1.3.0\\appcenter.downloadapp.getappinfo.1.3.0.nupkg.sha512",
     "C:\\Users\\liu11440\\.nuget\\packages\\communitytoolkit.maui\\5.0.0\\communitytoolkit.maui.5.0.0.nupkg.sha512",
     "C:\\Users\\liu11440\\.nuget\\packages\\communitytoolkit.maui.core\\5.0.0\\communitytoolkit.maui.core.5.0.0.nupkg.sha512",

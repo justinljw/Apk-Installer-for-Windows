@@ -7,7 +7,8 @@
     <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>neutral</AppxBuildConfigurationSelection>
-    <PackageOptionalProjectsInIdeBuilds>True</PackageOptionalProjectsInIdeBuilds>
+    <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+    <PackageLogoSource>C:\Users\liu11440\Downloads\product-installer-grey.png</PackageLogoSource>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Update="Platforms\Windows\Package.appxmanifest">

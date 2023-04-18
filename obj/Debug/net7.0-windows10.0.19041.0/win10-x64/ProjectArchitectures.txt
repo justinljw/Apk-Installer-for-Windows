@@ -1,0 +1,1 @@
+C:\Maui\My\prototype\ApkInstallerForWindows\ApkInstallerForWindows.csproj;x64

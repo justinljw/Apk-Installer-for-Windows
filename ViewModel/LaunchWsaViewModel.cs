@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
 using System.Net.Sockets;
+using System.Text.RegularExpressions;
 
 namespace ApkInstallerForWindows.ViewModel;
 
@@ -50,7 +51,7 @@ public partial class LaunchWsaViewModel : ObservableObject
             p.Start();
 
             int waitTime_wsa = 2000;
-            while (Process.GetProcessesByName("WsaClient").Length == 0)
+            while (Process.GetProcessesByName("wsaclient").Length == 0)
             {
                 await Task.Delay(waitTime_wsa);
                 waitTime_wsa = waitTime_wsa + 1000;
@@ -105,14 +106,16 @@ public partial class LaunchWsaViewModel : ObservableObject
     {
         string cmd_output = "";
         string cmd_error = "";
+
+        Process cmdProcess = new Process();
+        ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
         try
         {
-            Process cmdProcess = new Process();
-            ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
-
             int waitTime_wsa = 2000;
             while (!cmd_output.Contains("connected"))
             {
+                cmdProcess = new Process();
+                cmdStartInfo = new ProcessStartInfo();
                 await Task.Delay(waitTime_wsa);
                 waitTime_wsa = waitTime_wsa + 1000;
 
@@ -124,14 +127,20 @@ public partial class LaunchWsaViewModel : ObservableObject
                 cmdStartInfo.CreateNoWindow = true;
                 cmdProcess.StartInfo = cmdStartInfo;
 
-                cmdProcess.OutputDataReceived += (s, e) => cmd_output += (e.Data != null && e.Data.Contains("C:")) ? "" : (e.Data + "\n");
-                cmdProcess.ErrorDataReceived += (s, e) => cmd_error += (e.Data != null && e.Data.Contains("C:")) ? "" : (e.Data + "\n");
+                cmdProcess.OutputDataReceived += (s, e) => cmd_output += (
+                        e.Data != null &&
+                        (e.Data.Contains("C:") || e.Data.Contains("Microsoft Windows") || e.Data.Contains("Microsoft Corporation"))
+                        ) ? "" : e.Data;
+                cmdProcess.ErrorDataReceived += (s, e) => cmd_error += (
+                        e.Data != null &&
+                        e.Data.Contains("C:")) ? "" : e.Data;
 
                 cmdProcess.EnableRaisingEvents = true;
                 cmdProcess.Start();
                 cmdProcess.BeginOutputReadLine();
                 cmdProcess.BeginErrorReadLine();
 
+                cmdProcess.StandardInput.WriteLine("wsaclient");
                 cmdProcess.StandardInput.WriteLine("adb kill-server");
                 cmdProcess.StandardInput.WriteLine("adb start-server");
                 cmdProcess.StandardInput.WriteLine($"adb connect localhost:{MainViewModel.userInfo.thisWsaPort}");
@@ -139,6 +148,7 @@ public partial class LaunchWsaViewModel : ObservableObject
                 cmdProcess.StandardInput.WriteLine("exit");
                 cmdProcess.WaitForExit(30000);
 
+                cmdProcess.Kill();
                 if (waitTime_wsa > 30000)
                 {
                     throw new Exception();
@@ -150,9 +160,10 @@ public partial class LaunchWsaViewModel : ObservableObject
         }
         catch (Exception ex)
         {
+            cmdProcess.Kill();
             CanClick = false;
             ShowInfo = true;
-            LaunchStatus = $"Installation failed, unable to connect with Adb!\nCMD ERROR: \n{cmd_error}ERROR: {ex.Message}";
+            LaunchStatus = $"LOG:\nInstallation failed, unable to connect with Adb!\n\nCMD OUTPUT: \n{cmd_output}\n\nCMD ERROR: \n{cmd_error}\n\nERROR: {ex.Message}";
         }
     }
 

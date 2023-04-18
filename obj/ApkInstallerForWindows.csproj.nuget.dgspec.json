@@ -103,6 +103,10 @@
               "target": "Package",
               "version": "[1.2.221209.1, )",
               "autoReferenced": true
+            },
+            "adk-build-tools": {
+              "target": "Package",
+              "version": "[33.0.1, )"
             }
           },
           "imports": [

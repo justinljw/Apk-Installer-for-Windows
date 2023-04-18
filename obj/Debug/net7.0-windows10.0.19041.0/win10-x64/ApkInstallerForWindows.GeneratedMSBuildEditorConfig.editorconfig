@@ -1,0 +1,71 @@
+is_global = true
+build_property.TargetFramework = net7.0-windows10.0.19041.0
+build_property.TargetPlatformMinVersion = 10.0.17763.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 9A19103F-16F7-4668-BE54-9A1E7A4F7556
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ApkInstallerForWindows
+build_property.ProjectDir = C:\Maui\My\prototype\ApkInstallerForWindows\
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/ApkInstallPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.ApkInstallPage.xaml
+build_metadata.AdditionalFiles.TargetPath = ApkInstallPage.xaml
+build_metadata.AdditionalFiles.RelativePath = ApkInstallPage.xaml
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/AppcenterDownloadPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.AppcenterDownloadPage.xaml
+build_metadata.AdditionalFiles.TargetPath = AppcenterDownloadPage.xaml
+build_metadata.AdditionalFiles.RelativePath = AppcenterDownloadPage.xaml
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/LaunchWsaPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.LaunchWsaPage.xaml
+build_metadata.AdditionalFiles.TargetPath = LaunchWsaPage.xaml
+build_metadata.AdditionalFiles.RelativePath = LaunchWsaPage.xaml
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/SettingsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.SettingsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SettingsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SettingsPage.xaml
+
+[C:/Maui/My/prototype/ApkInstallerForWindows/StartAdbPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ApkInstallerForWindows.StartAdbPage.xaml
+build_metadata.AdditionalFiles.TargetPath = StartAdbPage.xaml
+build_metadata.AdditionalFiles.RelativePath = StartAdbPage.xaml

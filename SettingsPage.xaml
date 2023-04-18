@@ -133,7 +133,7 @@
                 HorizontalOptions="Start" />
             <Label 
                 Grid.Column="2"
-                Text="Settings Saved!"
+                Text="Settings Saved"
                 IsVisible="{Binding ShowSave}"
                 TextColor="DimGray"
                 VerticalOptions="Center" />
